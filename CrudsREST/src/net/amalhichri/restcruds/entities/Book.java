@@ -6,12 +6,6 @@ package net.amalhichri.restcruds.entities;
  */
 public class Book {
 	
-	public Shelf getShelf() {
-		return shelf;
-	}
-	public void setShelf(Shelf shelf) {
-		this.shelf = shelf;
-	}
 	private int isbn;
 	private String title;
 	private String authorName;
@@ -19,6 +13,9 @@ public class Book {
 	
 	
 	
+	public Book() {
+		super();
+	}
 	public Book(int isbn, String title, String authorName,Shelf shelf) {
 		super();
 		this.isbn = isbn;
@@ -44,6 +41,13 @@ public class Book {
 	public void setAuthorName(String authorName) {
 		this.authorName = authorName;
 	}
+	public Shelf getShelf() {
+		return shelf;
+	}
+	public void setShelf(Shelf shelf) {
+		this.shelf = shelf;
+	}
+	
 	
 	
 }

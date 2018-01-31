@@ -8,6 +8,7 @@ import net.amalhichri.restcruds.entities.Book;
 import net.amalhichri.restcruds.entities.Shelf;
 
 public class BooksBusiness {
+	
 	List<Book> booksList;
 	ShelfBusiness shelfBusiness=new ShelfBusiness();
 
@@ -23,12 +24,14 @@ public class BooksBusiness {
 		Shelf Shelf=shelfBusiness.getShelfById(refShelf);
 		if(Shelf!=null){
 			Book.setShelf(Shelf);
-			return booksList.add(Book);}
+			return booksList.add(Book);
+		}
 		return false;
 	}
-	public boolean updateBook(int idBook, Book Book){
+	
+	public boolean updateBook(int isbnBook, Book Book){
 		for(Book r:booksList){
-			if(r.getIsbn()==idBook){
+			if(r.getIsbn()==isbnBook){
 				int index=booksList.indexOf(Book);
 				Shelf Shelf=shelfBusiness.getShelfById(Book.getShelf().getId());
 				if(Shelf!=null){
@@ -39,20 +42,21 @@ public class BooksBusiness {
 		}
 		return false;
 	}
-	public Book getBookById(int id){
+	
+	public Book getBookById(int isbn){
 		Book Book=null;
 		for(Book r:booksList){
-			if(r.getIsbn()==id)
+			if(r.getIsbn()==isbn)
 				Book=r;
 		}
 		return Book;
 	}
 	
-	public boolean deleteBook(int id){
+	public boolean deleteBook(int isbn){
 		Iterator<Book> iterator=booksList.iterator();
 		while(iterator.hasNext()){
 			Book r=iterator.next();
-			if(r.getIsbn()==id){
+			if(r.getIsbn()==isbn){
 				iterator.remove();
 				return true;
 			}
@@ -68,10 +72,10 @@ public class BooksBusiness {
 		this.booksList = booksList;
 	}
 	
-	public List<Book> getbooksListByShelfReference(int reference) {
+	public List<Book> getbooksListByShelfId(int id) {
 		List<Book> liste=new ArrayList<Book>();
 		for(Book r:booksList){
-			if(r.getShelf().getId()==reference)
+			if(r.getShelf().getId()==id)
 				liste.add(r);
 		}
 		return liste;
