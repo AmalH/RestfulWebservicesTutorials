@@ -22,13 +22,16 @@ import net.amalhichri.restcruds.entities.Book;
 @Path("books")
 public class BookResource {
 
-	BooksBusiness booksBusiness = new BooksBusiness();
+	static BooksBusiness booksBusiness = new BooksBusiness();
 
 	/** POST **/
 	@POST
 	@Consumes(MediaType.APPLICATION_JSON)
-	public Response newRendezvous(Book book) {
+	public Response addBook(Book book) {
 		if (booksBusiness.addBook(book)) {
+			for (Book b : booksBusiness.getbooksList()){
+				System.out.println(b.getTitle());
+			}
 			return Response.status(Status.CREATED).build();
 		} else {
 			return Response.status(Status.NOT_FOUND).build();
@@ -39,6 +42,9 @@ public class BookResource {
 	@GET
 	@Produces(MediaType.APPLICATION_JSON)
 	public List<Book> getBooks() {
+		for (Book b : booksBusiness.getbooksList()){
+			System.out.println(b.getTitle());
+		}
 		return booksBusiness.getbooksList();
 		// return Response.status(Status.CREATED).build();
 	}
@@ -66,8 +72,7 @@ public class BookResource {
 	@Path("{id}")
 	public Response recupererRendezVousById(@PathParam("isbn") int isbn) {
 
-		Book book = new Book();
-		book = booksBusiness.getBookById(isbn);
+		Book book = booksBusiness.getBookById(isbn);
 		if (book == null) {
 			return Response.status(Status.NOT_FOUND).build();
 		}

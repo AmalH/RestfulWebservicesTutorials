@@ -47,6 +47,12 @@ public class Book {
 	public void setShelf(Shelf shelf) {
 		this.shelf = shelf;
 	}
+	@Override
+	public String toString() {
+		return "Book [isbn=" + isbn + ", title=" + title + ", authorName=" + authorName + ", shelf=" + shelf + "]";
+	}
+	
+	
 	
 	
 	

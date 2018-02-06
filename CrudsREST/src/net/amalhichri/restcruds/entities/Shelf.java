@@ -13,7 +13,9 @@ public class Shelf {
 	
 	public enum Category{History, ScienceFiction,Poetry,Physics;}
 	
-	
+	public Shelf(){
+		super();
+	}
 	
 	public Shelf(int id, String location, Category category) {
 		super();
